@@ -1,3 +1,5 @@
+const filteredKeywords = ['trump', 'covid', 'coronavirus', 'police']
+
 function contains(string, matchStrings) {
     return Boolean(matchStrings.find(matchString => string.includes(matchString)))
 }
@@ -7,7 +9,7 @@ function increaseZen() {
         .filter(element => Array.from(element.children).length === 0)
         .filter(element => {
             const content = element.textContent.toLowerCase()
-            return contains(content, ['trump', 'covid', 'coronavirus', 'police'])
+            return contains(content, filteredKeywords)
         })
     elements.forEach(element => element.style.display = "none")
 }

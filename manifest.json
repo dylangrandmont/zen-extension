@@ -3,19 +3,21 @@
     "version": "1.0",
     "description": "Remove All Which Depletes Zen Happiness",
     "permissions": ["activeTab", "declarativeContent", "storage"],
-    "page_action": {
-        "default_popup": "popup.html"
+    "browser_action": {
+        "default_popup": "popup.html",
+        "js": "popup.js",
+        "default_title": "Zen Mode"
     },
     "content_scripts": [
         {
         "matches": ["https://*/*"],
-        "js": ["zen.js"]
+        "js": ["zen.js"],
+        "run_at": "document_start"
         }
       ],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
       },
-    "options_page": "options.html",
     "manifest_version": 2    
   }
