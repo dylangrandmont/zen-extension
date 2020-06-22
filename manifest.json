@@ -1,0 +1,21 @@
+{
+    "name": "Zen Extension",
+    "version": "1.0",
+    "description": "Remove All Which Depletes Zen Happiness",
+    "permissions": ["activeTab", "declarativeContent", "storage"],
+    "page_action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+        "matches": ["https://*/*"],
+        "js": ["zen.js"]
+        }
+      ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+      },
+    "options_page": "options.html",
+    "manifest_version": 2    
+  }
