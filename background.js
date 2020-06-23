@@ -3,10 +3,12 @@
 // found in the LICENSE file.
 
 'use strict';
+window.filteredKeywords = {}
+const defaultKeywords = {'trump': true, 'covid': true, 'coronavirus': true, 'police': true}
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({color: '#3aa757'}, function() {
-    console.log("The color is green.");
+    window.filteredKeywords = defaultKeywords;
   });
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     chrome.declarativeContent.onPageChanged.addRules([{
@@ -18,3 +20,9 @@ chrome.runtime.onInstalled.addListener(function() {
     }]);
   });
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.request === 'filters') {
+    sendResponse({ filteredKeywords });
+  }
+})
